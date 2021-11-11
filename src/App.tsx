@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './app.module.scss';
-import VMainPage from "./views/mainPage";
+import VMainPage from './views/mainPage';
 
 function App() {
   return (

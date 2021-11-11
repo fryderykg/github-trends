@@ -1,8 +1,19 @@
 .mainPage {
-  align-items: start;
+  align-items: center;
   background-color: cornsilk;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   min-height: 100vh;
   padding: 1rem;
+}
+
+.navigationList {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  li {
+    width: 100%;
+  }
 }
