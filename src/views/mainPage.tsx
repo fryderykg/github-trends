@@ -4,6 +4,7 @@ import Loader from './loader/loader';
 import Navigation from './navigation/navigation';
 
 import styles from './mainPage.module.scss';
+import RepositoriesList from './repositoriesList/repositoriesList';
 
 const VMainPage = () => {
   const [language, setLanguage] = React.useState<string>('');
@@ -52,22 +53,15 @@ const VMainPage = () => {
                     selectedLanguage={language}
                     since={since}/>
       </header>
-      <main>
-        <h2>Selected language: {language}, since: {since}</h2>
-
+      <main className={styles.content}>
+        <h2>
+          <span>Selected language: {language}</span>
+          <span>Since: {since}</span>
+        </h2>
         {
-          loading && <Loader/>
-        }
-        {
-          repositoriesList.map(repo => {
-            return (
-              <div key={repo.name}>
-                <span>Name: {repo.name}</span>&nbsp;
-                <span>Language: {repo.language}</span>&nbsp;
-                <span>Stars: {repo.stars}</span>&nbsp;
-              </div>
-            )
-          })
+          loading
+            ? <Loader/>
+            : <RepositoriesList repositoriesList={repositoriesList}/>
         }
       </main>
     </div>

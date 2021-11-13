@@ -18,4 +18,14 @@
   h1 {
     margin-bottom: 2rem;
   }
+
+}
+
+.content {
+  width: 100%;
+  max-width: 600px;
+  h2 {
+    display: flex;
+    flex-direction: column;
+  }
 }

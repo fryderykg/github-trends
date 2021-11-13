@@ -1,5 +1,11 @@
 @import "src/utils/colors.module";
 
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .loader {
   border: 10px solid $loader-light;
   border-top: 10px solid $loader-dark;
