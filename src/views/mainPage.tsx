@@ -15,19 +15,11 @@ const VMainPage = () => {
             <li>
               <Checkbox
                 name={'daily'}
-                since={'daily'}
-              />
-            </li>
-            <li>
-              <Checkbox
-                name={'weekly'}
-                since={'weekly'}
-              />
-            </li>
-            <li>
-              <Checkbox
-                name={'monthly'}
-                since={'monthly'}
+                label={'Daily'}
+                checked={false}
+                disabled={false}
+                onChange={(e: Event) => {
+                  console.log(e)}}
               />
             </li>
             <li>

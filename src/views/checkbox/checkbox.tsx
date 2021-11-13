@@ -1,19 +1,30 @@
 import React from 'react';
 import styles from './checkbox.module.scss';
 
-type CheckboxProps = {
-  since: string,
+export type CheckboxProps = {
+  checked: boolean,
+  disabled: boolean,
+  label: string,
   name: string,
+  onChange: any,
 }
 
 const Checkbox = (props: CheckboxProps) => {
   return (
     <div className={styles.checkboxContainer}
-         data-testid={'checkbox_container'}>
+         data-testid={'component_checkbox_container'}>
 
       <label htmlFor={props.name}>
-        <input type="checkbox" name={props.name}/>
-        <span>{props.name}</span>
+        <input
+          data-testid={'component_checkbox_input'}
+          id={props.name}
+          name={props.name}
+          type="checkbox"
+          value={props.name}
+        />
+        <label htmlFor={props.name}>
+          {props.label}
+        </label>
       </label>
     </div>
   );
