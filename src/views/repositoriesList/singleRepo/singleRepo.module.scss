@@ -1,0 +1,43 @@
+@import "src/utils/colors.module";
+
+.singleRepo {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 1rem .5rem;
+
+  &:nth-of-type(2n) {
+    background-color: $table-background-dark;
+  }
+
+  &:hover {
+    background-color: $table-background-hover;
+  }
+}
+
+.name,
+.language,
+.stars {
+  align-items: center;
+  display: flex;
+}
+
+.name {
+  width: 40%;
+}
+
+.avatar {
+  height: 30px;
+  margin-right: .5rem;
+  object-fit: cover;
+  width: 30px;
+}
+
+.language {
+  width: 40%;
+}
+
+.stars {
+  justify-content: flex-end;
+  width: 20%;
+}

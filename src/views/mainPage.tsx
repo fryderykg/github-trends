@@ -1,5 +1,5 @@
 import React from 'react';
-import {api, languageData, repositoriesData} from '../models/api';
+import {api, languageData, RepositoriesData} from '../models/api';
 import Loader from './loader/loader';
 import Navigation from './navigation/navigation';
 
@@ -10,7 +10,7 @@ const VMainPage = () => {
   const [language, setLanguage] = React.useState<string>('');
   const [languagesList, setLanguagesList] = React.useState<languageData[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
-  const [repositoriesList, setRepositoriesList] = React.useState<repositoriesData[]>([]);
+  const [repositoriesList, setRepositoriesList] = React.useState<RepositoriesData[]>([]);
   const [since, setSince] = React.useState<string>('daily');
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ const VMainPage = () => {
     if (language && since) {
       setLoading(true);
       api.getRepositoriesList(language, since)
-        .then((repositories: repositoriesData[]) => setRepositoriesList(repositories))
+        .then((repositories: RepositoriesData[]) => setRepositoriesList(repositories))
         .catch(error => console.log('error', error))
         .finally(() => setLoading(false));
     }

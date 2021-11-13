@@ -3,7 +3,7 @@ export type languageData = {
   name: string,
 };
 
-export type repositoriesData = {
+export type RepositoriesData = {
   "author": string,
   "name": string,
   "avatar": string,
@@ -14,18 +14,14 @@ export type repositoriesData = {
   "stars": number,
   "forks": number,
   "currentPeriodStars": number,
-  "builtBy": [
-    {
-      "href": string,
-      "avatar": string,
-      "username": string,
-    }
-  ]
+  "builtBy": {
+    "href": string,
+    "avatar": string,
+    "username": string,
+  }[]
 };
 
 class Api {
-  constructor() {}
-
   private getData = (query: String): Promise<any> => {
     return new Promise((resolve, reject) => {
       const URL = `http://localhost:8000/${query}`
@@ -44,7 +40,7 @@ class Api {
     })
   }
 
-  getRepositoriesList = (language: string, since: string): Promise<repositoriesData[]> => {
+  getRepositoriesList = (language: string, since: string): Promise<RepositoriesData[]> => {
     return new Promise((resolve, reject) => {
       this.getData(`repositories?language=${language}&since=${since}`)
         .then(repositories => resolve(repositories))

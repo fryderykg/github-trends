@@ -1,0 +1,21 @@
+@import "src/utils/colors.module";
+
+.repositoriesListContainer {
+  border: 1px solid $table-background-dark;
+}
+
+.header {
+  background-color: $table-background-dark;
+  display: flex;
+  padding: 1rem .5rem;
+  font-weight: bold;
+}
+.name,
+.language {
+  width: 40%;
+}
+
+.stars {
+  text-align: end;
+  width: 20%;
+}

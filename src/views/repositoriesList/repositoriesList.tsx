@@ -1,21 +1,26 @@
 import React from 'react';
-import {repositoriesData} from '../../models/api';
+import {RepositoriesData} from '../../models/api';
+import SingleRepo from './singleRepo/singleRepo';
+
+import styles from './repositoriesList.module.scss';
 
 type RepositoriesListProps = {
-  repositoriesList: repositoriesData[],
+  repositoriesList: RepositoriesData[],
 }
 
 const RepositoriesList = (props: RepositoriesListProps) => {
   return (
-    <div>
+    <div className={styles.repositoriesListContainer}>
+      <header className={styles.header}>
+        <div className={styles.name}>Name</div>
+        <div className={styles.language}>Language</div>
+        <div className={styles.stars}>Stars</div>
+      </header>
       {
         props.repositoriesList.map(repo => {
           return (
-            <div key={repo.name}>
-              <span>Name: {repo.name}</span>&nbsp;
-              <span>Language: {repo.language}</span>&nbsp;
-              <span>Stars: {repo.stars}</span>&nbsp;
-            </div>
+            <SingleRepo key={repo.name}
+                        {...repo}/>
           )
         })
       }
