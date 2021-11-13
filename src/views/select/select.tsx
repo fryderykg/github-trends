@@ -16,11 +16,14 @@ export type SelectProps = {
 
 const Select = (props: SelectProps) => {
   return (
-    <div className={styles.select_container} data-testid={'component_select_container'}>
-      <label htmlFor={props.id}>
+    <div className={styles.selectContainer}
+         data-testid={'component_select_container'}>
+      <label className={styles.label}
+             htmlFor={props.id}>
         {props.label}:
       </label>
-      <select data-testid={'component_select'}
+      <select className={styles.select}
+              data-testid={'component_select'}
               id={props.id}
               name={props.name}
               onChange={props.onChange}
@@ -28,6 +31,7 @@ const Select = (props: SelectProps) => {
               value={props.value}
       >
         <option key={'default_option'}
+                disabled={true}
                 value={''}>
           {props.placeholder}
         </option>

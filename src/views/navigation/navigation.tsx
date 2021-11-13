@@ -36,7 +36,8 @@ const Navigation = (props: NavigationProps) => {
         {
           buttons.map(button => {
             return (
-              <li key={button.name}>
+              <li className={styles.checkboxElement}
+                  key={button.name}>
                 <Checkbox
                   checked={props.since === button.name}
                   disabled={false}
@@ -48,7 +49,8 @@ const Navigation = (props: NavigationProps) => {
             )
           })
         }
-        <li key={'language_select'}>
+        <li className={styles.selectElement}
+            key={'language_select'}>
           <Select disabled={false}
                   id={'languages'}
                   label={'Select language'}

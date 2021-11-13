@@ -1,3 +1,21 @@
-.select_container {
+@import "src/utils/colors.module";
 
+.selectContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.label {
+  margin-right: .5rem;
+}
+
+.select {
+  background-color: $navigation;
+  border-radius: 5px;
+  border: none;
+  height: 40px;
+  padding: 0 .5rem;
+  width: 150px;
 }

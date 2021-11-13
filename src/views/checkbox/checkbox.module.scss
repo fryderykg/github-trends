@@ -9,10 +9,14 @@
   font-weight: bold;
   height: 40px;
   justify-content: center;
-  width: 150px;
+  width: 100%;
 
   &:not(.isActive) {
     cursor: pointer;
+  }
+
+  @media (min-width: 500px) {
+    width: 150px;
   }
 }
 

@@ -1,13 +1,26 @@
 .navigationList {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  justify-content: center;
   list-style-type: none;
   margin: 1rem 0;
   padding: 0;
   width: 100%;
 
-  li {
-    width: 100%;
+  @media (min-width: 500px) {
+    flex-direction: row;
+  }
+
+  .checkboxElement {
     margin-bottom: .5rem;
+
+    @media (min-width: 500px) {
+      margin-right: .5rem;
+    }
+  }
+
+  .selectElement {
+    width: 100%;
   }
 }

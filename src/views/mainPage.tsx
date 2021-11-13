@@ -39,7 +39,7 @@ const VMainPage = () => {
   return (
     <div className={styles.mainPage}
          data-testid={'mainpage_container'}>
-      <header>
+      <header className={styles.header}>
         <h1>
           Github Trending
         </h1>
