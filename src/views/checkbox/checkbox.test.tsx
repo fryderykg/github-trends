@@ -18,7 +18,7 @@ const renderComponent = (data: CheckboxProps) => {
   );
 };
 
-test('renders app container', () => {
+test('renders checkbox container', () => {
   renderComponent(params)
   const checkboxContainer = screen.getByTestId('component_checkbox_container');
   expect(checkboxContainer).toBeInTheDocument();
@@ -39,7 +39,7 @@ test('should render proper value', () => {
 test('should render "false" disabled state', () => {
   renderComponent(params)
   const inputCheckbox = screen.getByTestId('component_checkbox_input');
-  expect((inputCheckbox as HTMLInputElement).disabled).toEqual(true);
+  expect((inputCheckbox as HTMLInputElement).disabled).toEqual(false);
 });
 
 test('should render "true" disabled state', () => {
@@ -90,5 +90,5 @@ test('should not fire onchange function', () => {
   })
   const labelCheckbox = screen.getByTestId('component_checkbox_label');
   fireEvent.click(labelCheckbox);
-  expect(params.onChange).toHaveBeenCalledTimes(1);
+  expect(params.onChange).toHaveBeenCalledTimes(0);
 });

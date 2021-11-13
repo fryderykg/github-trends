@@ -15,14 +15,17 @@ const Checkbox = (props: CheckboxProps) => {
          data-testid={'component_checkbox_container'}>
 
       <label htmlFor={props.name}>
-        <input
-          data-testid={'component_checkbox_input'}
-          id={props.name}
-          name={props.name}
-          type="checkbox"
-          value={props.name}
+        <input checked={props.checked}
+               data-testid={'component_checkbox_input'}
+               disabled={props.disabled}
+               id={props.name}
+               name={props.name}
+               onChange={props.onChange}
+               type="checkbox"
+               value={props.name}
         />
-        <label htmlFor={props.name}>
+        <label htmlFor={props.name}
+               data-testid={'component_checkbox_label'}>
           {props.label}
         </label>
       </label>
