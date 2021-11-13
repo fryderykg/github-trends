@@ -17,9 +17,11 @@ const VMainPage = () => {
   },[]);
 
   React.useEffect(() => {
-    api.getRepositoriesList(language, since)
-      .then((repositories) => setRepositoriesList(repositories))
-      .catch(error => console.log('error', error))
+    if (language && since) {
+      api.getRepositoriesList(language, since)
+        .then((repositories) => setRepositoriesList(repositories))
+        .catch(error => console.log('error', error))
+    }
   },[since, language]);
 
   const onSinceChangeHandler = (event: Event) => {
