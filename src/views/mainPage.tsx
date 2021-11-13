@@ -1,32 +1,24 @@
 import React from 'react';
+import Navigation from './navigation/navigation';
+
 import styles from './mainPage.module.scss';
-import Checkbox from './checkbox/checkbox';
 
 const VMainPage = () => {
+  const [since, setSince] = React.useState('daily');
+
+  const onSinceChangeHandler = (event: Event) => {
+    const {target} = event;
+    if (target) setSince((target as HTMLInputElement).value);
+  };
+
   return (
     <div className={styles.mainPage} data-testid={'mainpage_container'}>
       <header>
         <h1>
-          trending repos
+          Github Trending
         </h1>
-
-        <nav>
-          <ul className={styles.navigationList}>
-            <li>
-              <Checkbox
-                name={'daily'}
-                label={'Daily'}
-                checked={false}
-                disabled={false}
-                onChange={(e: Event) => {
-                  console.log(e)}}
-              />
-            </li>
-            <li>
-              select
-            </li>
-          </ul>
-        </nav>
+        <Navigation since={since}
+                    onSinceChangeHandler={onSinceChangeHandler}/>
       </header>
       <main>
         repo list

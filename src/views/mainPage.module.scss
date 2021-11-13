@@ -1,19 +1,12 @@
+@import "src/utils/colors.module";
+
 .mainPage {
   align-items: center;
-  background-color: cornsilk;
+  background-color: $background;
+  color: $text-light;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-height: 100vh;
   padding: 1rem;
-}
-
-.navigationList {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-
-  li {
-    width: 100%;
-  }
 }

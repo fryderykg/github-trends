@@ -1,0 +1,13 @@
+.navigationList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 1rem 0;
+  padding: 0;
+  width: 100%;
+
+  li {
+    width: 100%;
+    margin-bottom: .5rem;
+  }
+}
