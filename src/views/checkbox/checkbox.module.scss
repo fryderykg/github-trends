@@ -1,3 +1,32 @@
-.checkboxContainer {
+@import "../../utils/colors.module";
 
+.checkboxContainer {
+  align-items: center;
+  background-color: $navigation;
+  border-radius: 20px;
+  color: $text-dark;
+  display: flex;
+  font-weight: bold;
+  height: 40px;
+  justify-content: center;
+  width: 150px;
+
+  &:not(.isActive) {
+    cursor: pointer;
+  }
+}
+
+.isActive {
+  background-color: $navigation-active;
+  color: $text-light;
+  cursor: not-allowed;
+}
+
+.checkbox {
+  cursor: inherit;
+}
+
+.label {
+  cursor: inherit;
+  margin-left: 5px;
 }
