@@ -1,30 +1,26 @@
 import React from 'react';
 import Navigation from './navigation/navigation';
+import {api, languageData, repositoriesData} from '../models/api';
 
 import styles from './mainPage.module.scss';
 
-const languageOptions = [
-  {
-    urlParam: '1c-enterprise',
-    name: '1C Enterprise',
-  },
-  {
-    urlParam: 'abap',
-    name: 'ABAP',
-  },
-  {
-    urlParam: 'abnf',
-    name: 'ABNF',
-  },
-  {
-    urlParam: 'actionscript',
-    name: 'ActionScript',
-  },
-];
-
 const VMainPage = () => {
-  const [since, setSince] = React.useState('daily');
-  const [language, setLanguage] = React.useState('');
+  const [since, setSince] = React.useState<string>('daily');
+  const [languagesList, setLanguagesList] = React.useState<languageData[]>([]);
+  const [repositoriesList, setRepositoriesList] = React.useState<repositoriesData[]>([]);
+  const [language, setLanguage] = React.useState<string>('');
+
+  React.useEffect(() => {
+    api.getLanguagesList()
+      .then((languages) => setLanguagesList(languages))
+      .catch(error => console.log('error', error))
+  },[]);
+
+  React.useEffect(() => {
+    api.getRepositoriesList(language, since)
+      .then((repositories) => setRepositoriesList(repositories))
+      .catch(error => console.log('error', error))
+  },[since, language]);
 
   const onSinceChangeHandler = (event: Event) => {
     const {target} = event;
@@ -43,7 +39,7 @@ const VMainPage = () => {
         <h1>
           Github Trending
         </h1>
-        <Navigation languageOptions={languageOptions}
+        <Navigation languageOptions={languagesList}
                     onLanguageChangeHandler={onLanguageChangeHandler}
                     onSinceChangeHandler={onSinceChangeHandler}
                     selectedLanguage={language}
@@ -51,7 +47,17 @@ const VMainPage = () => {
       </header>
       <main>
         <h2>Selected language: {language}, since: {since}</h2>
-        repo list
+        {
+          repositoriesList.map(repo => {
+            return (
+              <div key={repo.name}>
+                <span>Name: {repo.name}</span>&nbsp;
+                <span>Language: {repo.language}</span>&nbsp;
+                <span>Stars: {repo.stars}</span>&nbsp;
+              </div>
+            )
+          })
+        }
       </main>
     </div>
   );
