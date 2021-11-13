@@ -1,5 +1,8 @@
 import React from 'react';
 import Checkbox from '../checkbox/checkbox';
+import Select from '../select/select';
+
+import {languageData} from '../../models/api';
 
 import styles from './navigation.module.scss';
 
@@ -19,8 +22,11 @@ const buttons = [
 ];
 
 type NavigationProps = {
-  since: string,
+  languageOptions: languageData[],
+  onLanguageChangeHandler: any,
   onSinceChangeHandler: any,
+  selectedLanguage: string,
+  since: string,
 }
 
 const Navigation = (props: NavigationProps) => {
@@ -30,7 +36,7 @@ const Navigation = (props: NavigationProps) => {
         {
           buttons.map(button => {
             return (
-              <li>
+              <li key={button.name}>
                 <Checkbox
                   checked={props.since === button.name}
                   disabled={false}
@@ -42,8 +48,16 @@ const Navigation = (props: NavigationProps) => {
             )
           })
         }
-        <li>
-          select
+        <li key={'language_select'}>
+          <Select disabled={false}
+                  id={'languages'}
+                  label={'Select language'}
+                  name={'languages'}
+                  onChange={props.onLanguageChangeHandler}
+                  options={props.languageOptions}
+                  placeholder={'Select language'}
+                  value={props.selectedLanguage}
+          />
         </li>
       </ul>
     </nav>
