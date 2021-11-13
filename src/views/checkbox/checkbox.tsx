@@ -14,6 +14,7 @@ const Checkbox = (props: CheckboxProps) => {
   return (
     <label className={classNames(styles.checkboxContainer, {
       [styles.isActive]: props.checked,
+      [styles.isDisabled]: props.disabled,
     })}
            data-testid={'component_checkbox_container'}
            htmlFor={props.name}>

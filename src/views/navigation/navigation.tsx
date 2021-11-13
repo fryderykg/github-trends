@@ -22,6 +22,7 @@ const buttons = [
 ];
 
 type NavigationProps = {
+  disabled: boolean
   languageOptions: languageData[],
   onLanguageChangeHandler: any,
   onSinceChangeHandler: any,
@@ -40,7 +41,7 @@ const Navigation = (props: NavigationProps) => {
                   key={button.name}>
                 <Checkbox
                   checked={props.since === button.name}
-                  disabled={false}
+                  disabled={props.disabled}
                   label={button.label}
                   name={button.name}
                   onChange={props.onSinceChangeHandler}
@@ -51,7 +52,7 @@ const Navigation = (props: NavigationProps) => {
         }
         <li className={styles.selectElement}
             key={'language_select'}>
-          <Select disabled={false}
+          <Select disabled={props.disabled}
                   id={'languages'}
                   label={'Select language'}
                   name={'languages'}

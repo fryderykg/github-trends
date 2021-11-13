@@ -5,15 +5,12 @@
   background-color: $navigation;
   border-radius: 20px;
   color: $text-dark;
+  cursor: pointer;
   display: flex;
   font-weight: bold;
   height: 40px;
   justify-content: center;
   width: 100%;
-
-  &:not(.isActive) {
-    cursor: pointer;
-  }
 
   @media (min-width: 500px) {
     width: 150px;
@@ -26,8 +23,16 @@
   cursor: not-allowed;
 }
 
+.isDisabled {
+  cursor: not-allowed;
+}
+
 .checkbox {
   cursor: inherit;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .label {

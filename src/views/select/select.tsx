@@ -23,6 +23,7 @@ const Select = (props: SelectProps) => {
         {props.label}:
       </label>
       <select className={styles.select}
+              disabled={props.disabled}
               data-testid={'component_select'}
               id={props.id}
               name={props.name}

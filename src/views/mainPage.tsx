@@ -1,28 +1,32 @@
 import React from 'react';
-import Navigation from './navigation/navigation';
 import {api, languageData, repositoriesData} from '../models/api';
+import Loader from './loader/loader';
+import Navigation from './navigation/navigation';
 
 import styles from './mainPage.module.scss';
 
 const VMainPage = () => {
-  const [since, setSince] = React.useState<string>('daily');
-  const [languagesList, setLanguagesList] = React.useState<languageData[]>([]);
-  const [repositoriesList, setRepositoriesList] = React.useState<repositoriesData[]>([]);
   const [language, setLanguage] = React.useState<string>('');
+  const [languagesList, setLanguagesList] = React.useState<languageData[]>([]);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [repositoriesList, setRepositoriesList] = React.useState<repositoriesData[]>([]);
+  const [since, setSince] = React.useState<string>('daily');
 
   React.useEffect(() => {
     api.getLanguagesList()
-      .then((languages) => setLanguagesList(languages))
-      .catch(error => console.log('error', error))
-  },[]);
+      .then((languages: languageData[]) => setLanguagesList(languages))
+      .catch(error => console.log('error', error));
+  }, []);
 
   React.useEffect(() => {
     if (language && since) {
+      setLoading(true);
       api.getRepositoriesList(language, since)
-        .then((repositories) => setRepositoriesList(repositories))
+        .then((repositories: repositoriesData[]) => setRepositoriesList(repositories))
         .catch(error => console.log('error', error))
+        .finally(() => setLoading(false));
     }
-  },[since, language]);
+  }, [since, language]);
 
   const onSinceChangeHandler = (event: Event) => {
     const {target} = event;
@@ -41,14 +45,19 @@ const VMainPage = () => {
         <h1>
           Github Trending
         </h1>
-        <Navigation languageOptions={languagesList}
+        <Navigation disabled={loading}
                     onLanguageChangeHandler={onLanguageChangeHandler}
                     onSinceChangeHandler={onSinceChangeHandler}
+                    languageOptions={languagesList}
                     selectedLanguage={language}
                     since={since}/>
       </header>
       <main>
         <h2>Selected language: {language}, since: {since}</h2>
+
+        {
+          loading && <Loader/>
+        }
         {
           repositoriesList.map(repo => {
             return (
