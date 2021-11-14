@@ -2,16 +2,20 @@ import React from 'react';
 import {api, languageData, RepositoriesData} from '../models/api';
 import Loader from './loader/loader';
 import Navigation from './navigation/navigation';
-
-import styles from './mainPage.module.scss';
 import RepositoriesList from './repositoriesList/repositoriesList';
 
+import styles from './mainPage.module.scss';
+
 const VMainPage = () => {
-  const [language, setLanguage] = React.useState<string>('');
+  const locallyStoredData = localStorage.getItem('githubTrendsFilters');
+  const initialLanguage = locallyStoredData ? JSON.parse(locallyStoredData).language : '';
+  const initialSince = locallyStoredData ? JSON.parse(locallyStoredData).since : 'daily';
+
+  const [language, setLanguage] = React.useState<string>(initialLanguage);
   const [languagesList, setLanguagesList] = React.useState<languageData[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [repositoriesList, setRepositoriesList] = React.useState<RepositoriesData[]>([]);
-  const [since, setSince] = React.useState<string>('daily');
+  const [since, setSince] = React.useState<string>(initialSince);
 
   React.useEffect(() => {
     api.getLanguagesList()
@@ -23,7 +27,10 @@ const VMainPage = () => {
     if (language && since) {
       setLoading(true);
       api.getRepositoriesList(language, since)
-        .then((repositories: RepositoriesData[]) => setRepositoriesList(repositories))
+        .then((repositories: RepositoriesData[]) => {
+          setRepositoriesList(repositories);
+          localStorage.setItem('githubTrendsFilters', JSON.stringify({since, language}));
+        })
         .catch(error => console.log('error', error))
         .finally(() => setLoading(false));
     }
