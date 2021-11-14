@@ -7,8 +7,8 @@
 .header {
   background-color: $table-background-dark;
   display: flex;
-  padding: 1rem .5rem;
   font-weight: bold;
+  padding: 1rem .5rem;
 }
 .name,
 .language {
@@ -18,4 +18,18 @@
 .stars {
   text-align: end;
   width: 20%;
+
+  &:hover {
+    color: $table-background-hover;
+    cursor: pointer;
+  }
+}
+
+.sortIcon {
+  margin-left: .5rem;
+}
+
+.list {
+  margin: 0;
+  padding-left: 0;
 }
