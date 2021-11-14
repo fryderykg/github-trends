@@ -1,5 +1,6 @@
 import React from 'react';
 import {api, languageData, RepositoriesData} from '../models/api';
+import ErrorMessage from './errorMessage/errorMessage';
 import Loader from './loader/loader';
 import Navigation from './navigation/navigation';
 import RepositoriesList from './repositoriesList/repositoriesList';
@@ -16,11 +17,12 @@ const VMainPage = () => {
   const [loading, setLoading] = React.useState<boolean>(false);
   const [repositoriesList, setRepositoriesList] = React.useState<RepositoriesData[]>([]);
   const [since, setSince] = React.useState<string>(initialSince);
+  const [errorMessage, setErrorMessage] = React.useState<string>('');
 
   React.useEffect(() => {
     api.getLanguagesList()
       .then((languages: languageData[]) => setLanguagesList(languages))
-      .catch(error => console.log('error', error));
+      .catch(error => setErrorMessage(error.message));
   }, []);
 
   React.useEffect(() => {
@@ -31,7 +33,7 @@ const VMainPage = () => {
           setRepositoriesList(repositories);
           localStorage.setItem('githubTrendsFilters', JSON.stringify({since, language}));
         })
-        .catch(error => console.log('error', error))
+        .catch(error => setErrorMessage(error.message))
         .finally(() => setLoading(false));
     }
   }, [since, language]);
@@ -60,6 +62,7 @@ const VMainPage = () => {
                     selectedLanguage={language}
                     since={since}/>
       </header>
+      <ErrorMessage message={errorMessage}/>
       <main className={styles.content}>
         <h2>
           <span>Selected language: {language}</span>
