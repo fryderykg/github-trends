@@ -68,7 +68,9 @@ const VMainPage = () => {
         {
           loading
             ? <Loader/>
-            : <RepositoriesList repositoriesList={repositoriesList}/>
+            : repositoriesList.length > 0
+              ? <RepositoriesList repositoriesList={repositoriesList}/>
+              : <span>No repositories found, change filters to update.</span>
         }
       </main>
     </div>
